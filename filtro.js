@@ -1,34 +1,46 @@
 // Tenemos un li de productos
 
 const productos = [
-  {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "./taco-negro.jpg"},
-  {nombre: "Zapato azul", tipo: "zapato", color: "azul", img: "./taco-azul.jpg"},
-  {nombre: "Bota negra", tipo: "bota", color: "negro", img: "./bota-negra.jpg"},
-  {nombre: "Bota azul", tipo: "bota", color: "azul", img: "./bota-azul.jpg"},
-  {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
+  {nombre: "Zapato negro", tipo: "zapato", color: "negro", img: "shoePics/taco-negro.jpg"},
+  {nombre: "Zapato azul", tipo: "zapato", color: "azul", img: "shoePics/taco-azul.jpg"},
+  {nombre: "Bota negra", tipo: "bota", color: "negro", img: "shoePics/bota-negra.jpg"},
+  {nombre: "Bota azul", tipo: "bota", color: "azul", img: "shoePics/bota-azul.jpg"},
+  {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "shoePics/zapato-rojo.jpg"}
 ]
+//Se crea carpeta shoePics para organizar y se corrigen las rutas
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+//Se modifica getElementsByName por getElementsById
+const li = document.getElementById("lista-de-productos")
+// Se elimina .
+const $i = document.querySelector("input");
 
+// Se modifica nombre de variable a createDiv para mejor legibilidad
 for (let i = 0; i < productos.length; i++) {
-  var d = document.createElement("div")
-  d.classList.add("producto")
+  var createDiv = document.createElement("div")
+  createDiv.classList.add("producto")
+  //! Creación de div con clase producto
 
-  var ti = document.createElement("p")
-  ti.classList.add("titulo")
-  ti.textContent = productos[i].nombre
+// Se modifica nombre de variable a newParagraph por legibilidad
+  var newParagraph = document.createElement("p")
+  // No existe la clase titulo en CSS
+  newParagraph.classList.add("titulo")
+  newParagraph.textContent = productos[i].nombre
+  //! Creación de párrafo con clase titulo que demuestra nombre por producto
   
+  //Se cambian '' por "" por consistencia
   var imagen = document.createElement("img");
-  imagen.setAttribute('src', productos[i].img);
+  imagen.setAttribute("src", productos[i].img);
+  //! Creación de elemento img y asignación de ruta de archivo
 
-  d.appendChild(ti)
-  d.appendChild(imagen)
+  createDiv.appendChild(newParagraph)
+  createDiv.appendChild(imagen)
+  //! Asignación de párrafo e imagen via DOM
 
-  li.appendChild(d)
+  li.appendChild(createDiv)
+  //! Se anexan divs a la lista
 }
 
-displayProductos(productos)
+//Se elimina displayProductos(productos)
 const botonDeFiltro = document.querySelector("button");
 
 botonDeFiltro.onclick = function() {
@@ -41,20 +53,20 @@ botonDeFiltro.onclick = function() {
   const productosFiltrados = filtrado(productos, texto );
 
   for (let i = 0; i < productosFiltrados.length; i++) {
-    var d = document.createElement("div")
-    d.classList.add("producto")
+    var createDiv = document.createElement("div")
+    createDiv.classList.add("producto")
   
-    var ti = document.createElement("p")
-    ti.classList.add("titulo")
-    ti.textContent = productosFiltrados[i].nombre
+    var newParagraph = document.createElement("p")
+    newParagraph.classList.add("titulo")
+    newParagraph.textContent = productosFiltrados[i].nombre
     
     var imagen = document.createElement("img");
     imagen.setAttribute('src', productosFiltrados[i].img);
   
-    d.appendChild(ti)
-    d.appendChild(imagen)
+    createDiv.appendChild(newParagraph)
+    createDiv.appendChild(imagen)
   
-    li.appendChild(d)
+    li.appendChild(createDiv)
   }
 }
 
